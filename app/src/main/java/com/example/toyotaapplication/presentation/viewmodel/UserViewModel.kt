@@ -1,6 +1,5 @@
 package com.example.toyotaapplication.presentation.viewmodel
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.toyotaapplication.data.repository.IRepositoryUsers
@@ -22,7 +21,6 @@ class UserViewModel @Inject constructor(
             try {
                 val responseData = repository.getUserResponse()
                 _response.value = NetworkStateResponse.Success(responseData)
-                Log.d("RESPONSESTATE", "${_response.value}")
 
             } catch (ex: Exception) {
                 _response.value = NetworkStateResponse.Failed("Network Error")

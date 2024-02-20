@@ -2,6 +2,7 @@ package com.example.toyotaapplication.presentation.ui
 
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
@@ -19,6 +20,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.State
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.toyotaapplication.domain.model.NetworkStateResponse
@@ -55,7 +57,6 @@ class MainActivity : ComponentActivity() {
 fun UsersList(
     response: State<NetworkStateResponse>
 ) {
-    Log.d("response", "$response")
     when(response.value) {
         is NetworkStateResponse.Success -> {
             UsersListDisplay((response.value as NetworkStateResponse.Success).response)
@@ -66,7 +67,11 @@ fun UsersList(
         }
 
         is NetworkStateResponse.Failed -> {
-
+            Toast.makeText(
+                LocalContext.current,
+                "Error getting weather data",
+                Toast.LENGTH_SHORT
+            ).show()
         }
     }
 }
