@@ -69,7 +69,7 @@ fun UsersList(
         is NetworkStateResponse.Failed -> {
             Toast.makeText(
                 LocalContext.current,
-                "Error getting weather data",
+                "Error getting users data",
                 Toast.LENGTH_SHORT
             ).show()
         }
